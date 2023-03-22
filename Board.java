@@ -100,8 +100,19 @@ public class Board {
      * a horizontal, vertical, or diagonal direction.
      */
     public boolean isWonBy(Player player) {
-        return winningRow() != null;
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                if (board[i][j] == player) {
+                    List<Place> row = checkWin(i, j);
+                    if (row != null) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
     }
+
     /** Return the winning row. For those who are not familiar with
      * the Iterable interface, you may return an object of
      * List<Place>. */
